@@ -13,6 +13,7 @@ namespace VendasConcole
             do
             {
                 Console.Clear();
+                Console.WriteLine("--PROJETO DE VENDAS NO CONSOLE--\n");
                 Console.WriteLine("\n1 – Cadastrar de Cliente " +
                    "               \n2 – Listar de Clientes" +
                    "               \n3 – Cadastrar de Vendedor" +
@@ -75,14 +76,23 @@ namespace VendasConcole
             c.Nome = Console.ReadLine();
             Console.WriteLine("Informe o cpf do cliiente: ");
             c.Cpf = Console.ReadLine();
-            clientes.Add(c);
 
+            string validar = BuscarPorCpf(c.Cpf);
+            
+            if(validar != null)
+            {
+                Console.WriteLine("\n***Cpf já está cadastrado!***\n Não é possível cadastrar outro clinte com um cpf já cadastrado\n");
+            } else
+            {
+                clientes.Add(c);
+                Console.WriteLine("\nCliente Cadastrado!\n");
+            }
         }
         public static void ListarCliente()
         {
-            Console.WriteLine("--Clientes Cadastrados--");
+            Console.WriteLine("--Clientes Cadastrados--\n");
 
-            clientes.ForEach(cli => Console.WriteLine("Nome: " + cli.Nome + " Cpf: " + cli.Cpf));
+            clientes.ForEach(cli => Console.WriteLine(cli));
 
         }
         public static void Vendedor()
@@ -112,6 +122,17 @@ namespace VendasConcole
         public static void VendaCliente()
         {
             Console.WriteLine("Bem vindo a listagem de vendas por cliente!");
+        }
+        public static string BuscarPorCpf(string cpf)
+        {
+            for (int i = 0; i < clientes.Count; i++)
+            {
+                if(cpf == clientes[i].Cpf)
+                {
+                    return cpf;
+                }
+            }
+            return null;
         }
     }
 }
