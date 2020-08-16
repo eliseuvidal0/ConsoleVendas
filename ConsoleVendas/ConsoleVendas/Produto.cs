@@ -4,20 +4,20 @@ using System.Text;
 
 namespace ConsoleVendas
 {
-    class Cliente
+    class Produto
     {
-        public Cliente()
+        public Produto()
         {
             CriadoEm = DateTime.Now;
         }
-
         public string Nome { get; set; }
-        public string Cpf { get; set; }
+        public double preco { get; set; }
+        public int Quantidade { get; set; }
         public DateTime CriadoEm { get; set; }
 
         public override string ToString()
         {
-            return $"Nome: {Nome} | CPF: {Cpf}";
+            return $"Produto: {Nome} | Preço: {preco} | Quantidade: {Quantidade}";
         }
     }
 }
