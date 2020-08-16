@@ -82,11 +82,15 @@ namespace VendasConcole
             if(validar != null)
             {
                 Console.WriteLine("\n***Cpf já está cadastrado!***\n Não é possível cadastrar outro clinte com um cpf já cadastrado\n");
+            } else if(!ValidarCpf(c.Cpf))
+            {
+                Console.WriteLine("\n**CPF INVÁLIDO!**\n");
             } else
             {
                 clientes.Add(c);
                 Console.WriteLine("\nCliente Cadastrado!\n");
             }
+            
         }
         public static void ListarCliente()
         {
@@ -133,6 +137,75 @@ namespace VendasConcole
                 }
             }
             return null;
+        }
+        public static Boolean ValidarCpf(string cpf)
+        {
+            int total = CalculoCpf(cpf, 10);
+            int validador = 1;
+
+            if (!ValidarCodigo(cpf, validador, total)) {
+                return false;
+            }
+
+            total = CalculoCpf(cpf, 11) ;
+            validador = 0;
+
+            if (!ValidarCodigo(cpf, validador, total))
+            {
+                return false;
+            }
+
+            return true;
+        }
+        public static Boolean ValidarCodigo(string cpf, int validador, int total)
+        {
+            if (total % 11 < 2)
+            {
+                int cont = 10;
+                foreach (char c in cpf)
+                {
+                    if (cont == validador)
+                    {
+                        if (Char.GetNumericValue(c) != 0)
+                        { return false; }
+                        break;
+                    }
+                    --cont;
+                }
+            }
+            else
+            {
+                int resto = total % 11;
+                int cont = 10;
+
+                foreach (char c in cpf)
+                {
+                    if (cont == validador)
+                    {
+                        if (Char.GetNumericValue(c) != 11 - resto)
+                        { return false; }
+                        break;
+                    }
+                    --cont;
+                }
+            }
+            return true;
+        }
+        public static int CalculoCpf(string cpf, int cont)
+        {
+            int total = 0;
+            foreach (char c in cpf)
+            {
+                int numero = Convert.ToInt32(Char.GetNumericValue(c));
+                total += (numero * cont);
+
+                --cont;
+                if (cont < 2)
+                {
+                    break;
+                }
+            }
+            return total;
         }
     }
 }
