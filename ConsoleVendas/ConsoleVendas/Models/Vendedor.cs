@@ -1,23 +1,23 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleVendas
+namespace ConsoleVendas.Models
 {
-    class Produto
+    class Vendedor
     {
-        public Produto()
+        public Vendedor()
         {
             CriadoEm = DateTime.Now;
         }
         public string Nome { get; set; }
-        public double preco { get; set; }
-        public int Quantidade { get; set; }
+        public  string Cpf { get; set; }
         public DateTime CriadoEm { get; set; }
 
         public override string ToString()
         {
-            return $"Produto: {Nome} | Preço: {preco} | Quantidade: {Quantidade}";
+            return $"Nome: {Nome} | CPF: {Cpf}";
         }
     }
 }

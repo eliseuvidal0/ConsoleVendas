@@ -1,18 +1,18 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleVendas
+namespace ConsoleVendas.Models
 {
-    class Vendedor
+    class Cliente
     {
-        public Vendedor()
+        public Cliente()
         {
             CriadoEm = DateTime.Now;
         }
+
         public string Nome { get; set; }
-        public  string Cpf { get; set; }
+        public string Cpf { get; set; }
         public DateTime CriadoEm { get; set; }
 
         public override string ToString()
