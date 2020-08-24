@@ -11,6 +11,7 @@ namespace ConsoleVendas.Views
     {
         public static void Cadastrar()
         {
+            Console.WriteLine("--CADASTRAR PRODUTO--");
             Produto p = new Produto();
 
             Console.WriteLine("Indorme o nome do produto: ");
@@ -20,26 +21,9 @@ namespace ConsoleVendas.Views
             Console.WriteLine("Informe  a Quantidade do produto: ");
             p.Quantidade = Convert.ToInt32(Console.ReadLine());
 
-            if (BuscarProduto(p.Nome))
-            {
-                Console.WriteLine("--PRODUTO JÁ ESTÁ CADASTRADO--\n**Não é possível cadastrar dois produtos com o mesmo nome**");
-            }
-            else
-            {
-                ListaProduto.SetProdutos(p);
-                Console.WriteLine("Produto Cadastrado!");
-            }
+            ProdutoDAO.Salvar(p);
+                
         }
-        private static Boolean BuscarProduto(string nome)
-        {
-            for (int i = 0; i < ListaProduto.GetProdutos().Count; i++)
-            {
-                if (nome == ListaProduto.GetProdutos()[i].Nome)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        
     }
 }

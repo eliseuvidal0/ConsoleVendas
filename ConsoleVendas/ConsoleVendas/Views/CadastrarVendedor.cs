@@ -11,6 +11,7 @@ namespace ConsoleVendas.Views
     {
         public static void Cadastrar()
         {
+            Console.WriteLine("--CADASTRO DE VENDEDORES--");
             Vendedor v = new Vendedor();
 
             Console.WriteLine("Informe o nome do vendedor: ");
@@ -18,30 +19,14 @@ namespace ConsoleVendas.Views
             Console.WriteLine("Informe o cpf do vendedor: ");
             v.Cpf = Console.ReadLine();
 
-            if (BuscarVendedor(v.Cpf))
-            {
-                Console.WriteLine("\n***Cpf já está cadastrado!***\n Não é possível cadastrar outro vendedor com um cpf já cadastrado\n");
-            }
-            else if (!CpfValidacao.ValidarCpf(v.Cpf))
+
+            if (!CpfValidacao.ValidarCpf(v.Cpf))
             {
                 Console.WriteLine("\n**CPF INVÁLIDO!**\n");
             }
-            else
-            {
-                ListaVendedor.SetVendedores(v) ;
-                Console.WriteLine("\nVendedor Cadastrado!\n");
-            }
+
+            VendedorDAO.Salvar(v);
         }
-        private static Boolean BuscarVendedor(string cpf)
-        {
-            for (int i = 0; i < ListaVendedor.GetVendedores().Count; i++)
-            {
-                if (cpf == ListaVendedor.GetVendedores()[i].Cpf)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        
     }
 }

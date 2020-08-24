@@ -5,10 +5,10 @@ using System.Text;
 namespace ConsoleVendas.Utility
 {
     class CpfValidacao
-    {
+    { 
         public static Boolean ValidarCpf(string cpf)
         {
-            cpf = cpf.Replace(".", "").Replace("-", "");
+            cpf = Formatar(cpf);
             if (cpf.Length != 11) return false;
             if (!DigitosCpf(cpf)) return false;
 
@@ -98,5 +98,6 @@ namespace ConsoleVendas.Utility
             }
             return true;
         }
+        public static string Formatar(string cpf) => cpf.Replace(".", "").Replace("-", "");
     }
 }

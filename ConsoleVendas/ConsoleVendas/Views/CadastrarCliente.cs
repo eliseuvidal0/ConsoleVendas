@@ -12,36 +12,20 @@ namespace ConsoleVendas.Views
         public static void Cadastrar()
         {
             Cliente c = new Cliente();
+            Console.WriteLine("--CADASTRAR CLIENTE--");
 
             Console.WriteLine("Informe o nome do cliente: ");
             c.Nome = Console.ReadLine();
             Console.WriteLine("Informe o cpf do cliiente: ");
             c.Cpf = Console.ReadLine();
 
-            if (BuscarPorCpf(c.Cpf))
-            {
-                Console.WriteLine("\n***Cpf já está cadastrado!***\n Não é possível cadastrar outro clinte com um cpf já cadastrado\n");
-            }
-            else if (!CpfValidacao.ValidarCpf(c.Cpf))
+            if (!CpfValidacao.ValidarCpf(c.Cpf))
             {
                 Console.WriteLine("\n**CPF INVÁLIDO!**\n");
             }
-            else
-            {
-                ListaCliente.SetClientes(c);
-                Console.WriteLine("\nCliente Cadastrado!\n");
-            }
+
+            ClienteDAO.Salvar(c);
         }
-        private static Boolean BuscarPorCpf(string cpf)
-        {
-            for (int i = 0; i < ListaCliente.GetClientes().Count; i++)
-            {
-                if (cpf == ListaCliente.GetClientes()[i].Cpf)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        
     }
 }

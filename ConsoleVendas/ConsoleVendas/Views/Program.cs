@@ -33,28 +33,22 @@ namespace ConsoleVendas.Views
                 switch (op)
                 {
                     case 1:
-                        Console.WriteLine("--CADASTRAR CLIENTE--");
                         CadastrarCliente.Cadastrar();
                         break;
                     case 2:
-                        Console.WriteLine("--CLIENTES CADASTRADOS--\n");
-                        ListaCliente.ListaDeCliente();
+                        ClienteDAO.ListaDeCliente();
                         break;
                     case 3:
-                        Console.WriteLine("--CADASTRO DE VENDEDORES--");
                         CadastrarVendedor.Cadastrar();
                         break;
                     case 4:
-                        Console.WriteLine("--VENDEDORES CADASTRADOS--");
-                        ListaVendedor.ListaDeVendedor();
+                        VendedorDAO.ListaDeVendedor();
                         break;
                     case 5:
-                        Console.WriteLine("--CADASTRAR PRODUTO--");
                         CadastrarProduto.Cadastrar();
                         break;
                     case 6:
-                        Console.WriteLine("--PRODUTOS CADASTRADOS--");
-                        ListaProduto.ListaDeProduto();
+                        ProdutoDAO.ListaDeProduto();
                         break;
                     case 7:
                         Vender();
